@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="API test Suite">
+    <listeners>
+        <listener class-name = "reporter.CustomReporter" />
+    </listeners>
+    <test thread-count="1" name="Get all posts">
+        <parameter name = "noOfRecords" value="100"/>
+        <parameter name = "id" value="3"/>
+        <classes>
+            <class name="apiTest.TestApiCalls">
+                <methods>
+                    <include name="getAllPosts"/>
+                </methods>
+            </class>
+        </classes>
+    </test> <!-- api-testing -->
+    <test thread-count="1" name="Get unique post by id">
+        <parameter name = "ExpectedStatusCode" value="200"/>
+        <parameter name = "id" value="3"/>
+        <classes>
+            <class name="apiTest.TestApiCalls">
+                <methods>
+                    <include name="getPostById"/>
+                </methods>
+            </class>
+        </classes>
+    </test> <!-- api-testing -->
+
+    <test thread-count="1" name="No post found by id - Negative test">
+        <parameter name = "ExpectedStatusCode" value="404"/>
+        <parameter name = "id" value="111"/>
+        <classes>
+            <class name="apiTest.TestApiCalls">
+                <methods>
+                    <include name="getPostById"/>
+                </methods>
+            </class>
+        </classes>
+    </test> <!-- api-testing -->
+    <test thread-count="1" name="Get the posts by user id">
+        <parameter name = "noOfRecords" value="10"/>
+        <parameter name = "id" value="1"/>
+        <classes>
+            <class name="apiTest.TestApiCalls">
+                <methods>
+                    <include name="getPostsByUserId"/>
+                </methods>
+            </class>
+        </classes>
+    </test> <!-- api-testing -->
+
+    <test thread-count="1" name="Add a post">
+        <parameter name = "id" value="111"/>
+        <parameter name = "userId" value="1"/>
+        <parameter name = "title" value="added test title"/>
+        <parameter name = "body" value="added test body"/>
+        <classes>
+            <class name="apiTest.TestApiCalls">
+                <methods>
+                    <include name="addPost"/>
+                </methods>
+            </class>
+        </classes>
+    </test> <!-- api-testing -->
+    <test thread-count="1" name="update a post">
+        <parameter name = "id" value="3"/>
+        <parameter name = "title" value="updated test title"/>
+        <parameter name = "body" value="updated test body"/>
+        <classes>
+            <class name="apiTest.TestApiCalls">
+                <methods>
+                    <include name="updatePost"/>
+                </methods>
+            </class>
+        </classes>
+    </test> <!-- api-testing -->
+    <test thread-count="1" name="patch a post">
+        <parameter name = "id" value="3"/>
+        <classes>
+            <class name="apiTest.TestApiCalls">
+                <methods>
+                    <include name="patchPost"/>
+                </methods>
+            </class>
+        </classes>
+    </test> <!-- api-testing -->
+    <test thread-count="1" name="delete a post">
+        <parameter name = "id" value="100"/>
+        <classes>
+            <class name="apiTest.TestApiCalls">
+                <methods>
+                    <include name="deletePost"/>
+                </methods>
+            </class>
+        </classes>
+    </test> <!-- api-testing -->
+    <test thread-count="1" name="Get the post comments by user id">
+        <parameter name = "id" value="100"/>
+        <parameter name = "numberOfComments"  value="5"/>
+        <classes>
+            <class name="apiTest.TestApiCalls">
+                <methods>
+                    <include name="getPostCommentsById"/>
+                </methods>
+            </class>
+        </classes>
+    </test> <!-- api-testing -->
+    <test thread-count="1" name="Get the comments by post id">
+        <parameter name = "postId" value="3"/>
+        <parameter name = "numberOfComments"  value="5"/>
+        <classes>
+            <class name="apiTest.TestApiCalls">
+                <methods>
+                    <include name="getCommentsByPostId"/>
+                </methods>
+            </class>
+        </classes>
+    </test> <!-- api-testing -->
+</suite> <!-- Default Suite -->
